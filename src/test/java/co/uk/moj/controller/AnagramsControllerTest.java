@@ -55,4 +55,14 @@ public class AnagramsControllerTest {
 		sortExpectedList.add("tors");
 		assertEquals(sortExpectedList, responseEntity.getBody().getResultAnagrams().get("sort"));
 	}
+
+	@Test
+	public void ShouldReturnAllTheAnagramForfresher() throws Exception{
+		Collection expectedList = new ArrayList();
+		expectedList.add("refresh");
+		ResponseEntity<Response> responseEntity = restTemplate.getForEntity("/moj/fresher", Response.class);
+		assertTrue(responseEntity.getBody().getResultAnagrams().get("fresher").contains("refresh"));
+		assertEquals(1,responseEntity.getBody().getResultAnagrams().get("fresher").size());
+		assertEquals(expectedList, responseEntity.getBody().getResultAnagrams().get("fresher"));
+	}
 }
